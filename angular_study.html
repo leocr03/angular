@@ -22,164 +22,188 @@
 			padding-right: 20px;
 		}
 
+		button.accordion {
+			background-color: #eee;
+			color: #444;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			transition: 0.4s;
+		}
+
+		button.accordion.active, button.accordion:hover {
+			background-color: #ddd;
+		}
+
+		div.panel {
+			padding: 0 18px;
+			display: none;
+			background-color: white;
+		}
+
+		div.panel.show {
+			display: block;
+		}
 	</style>
 </head>
 
 <body ng-app="pageApp">
 
-	<div>
-		<div class="inline">
-			<div ng-controller="modelBindCtrl">
-				<h2>Using ng-app, ng-model and ng-bind</h2>
-				<input type="text" ng-model="myName"/>
-				<br/>
-				<div>
-					<p ng-bind="myName"/>
-					<p style="color: blue;">{{myName | uppercase}}<p>
-				</div>
-			</div>
-
-		 	<br/>
-
-			<div ng-controller="repeatControllerCtrl" >
-				<h2>Using ng-repeat and ng-controller</h2>
-				<input type="text" ng-model="number1"/>
-				<input type="text" ng-model="number2"/>
-
-				<br/>
-				<div>
-					<ul>
-						<li ng-repeat="x in getResult()">{{x.display + ' = ' + x.result}}</li>
-					</ul>
-				</div>
-			</div>
-
-		 	<br/>
-
-			<div ng-controller="filterCtrl" >
-				<h2>Using filters</h2>
-
-				<input type="text" ng-model="personName"/>
-
-				<br/>
-				<ul>
-					<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName | uppercase) + ' Age: ' + x.age}}</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="inline">
-			<div ng-controller="httpGetAjaxCtrl" >
-				<h2>Using Http Get with Ajax</h2>
-
-				<input type="text" ng-model="personName"/>
-
-				<br/>
-				<ul>
-					<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName) + ' Age: ' + x.age}}</li>
-				</ul>
-			</div>
-
-		 	<br/>
-
-			<div ng-controller="repeatInTableCtrl" >
-				<h2>Using repeat in tables</h2>
-
-				<input type="text" ng-model="personName"/>
-
-				<br/>
-				<br/>
-
-				<table>
-					<tr>
-						<th>Position</th>
-						<th>Name</th>
-						<th>Age</th>
-					</tr>
-					<tr ng-repeat="x in people | orderBy:'age' | filter:personName">
-						<td>{{$index + 1}}</td>
-						<td>{{x.personName}}</td>
-						<td>{{x.age}}</td>
-					</tr>
-				</table>
-			</div>
-
-		 	<br/>
-
-			<div>
-				<h2>Using ng-disabled</h2>
-				<button ng-disabled="chkDisabler">Testing</button>
-				<br>
-				<br>
-				<input type="checkbox" ng-model="chkDisabler">Disable</input>
-			</div>
-		</div>
-
-		<div class="inline">
-			<div ng-controller="ngShowHideCtrl">
-				<h2>Using ng-show and ng-hide</h2>
-
-				<input type="text" ng-model="n1"/>&nbsp;&nbsp;<input type="text" ng-model="n2"/>
-		
-				<br/>
-				<p ng-hide="compareResult() > -1">n1 is lower than n2</p>
-				<p ng-show="compareResult() == 0">n1 is equal than n2</p>
-				<p ng-show="compareResult() == 1">n1 is greater than n2</p>
-			</div>
-
-		 	<br/>
-			<div ng-controller="ngClickCtrl">
-				<h2>Using ng-click</h2>
-
-				Type a number: <input type="text" ng-model="n1"/>
-
-				<br/>
-				<br/>
-				<button ng-click="sumTotal()">Sum</button>
-
-				<br/>
-				<p>{{doubleResult}}</p>
-			</div>
+	<button class="accordion">Using ng-app, ng-model and ng-bind</button>
+	<div ng-controller="modelBindCtrl" class="panel">
+		<h2>Using ng-app, ng-model and ng-bind</h2>
+		<input type="text" ng-model="myName"/>
+		<br/>
+		<div>
+			<p ng-bind="myName"></p>
+			<p style="color: blue;">{{myName | uppercase}}<p>
 		</div>
 	</div>
 
-	<br/>
-	
-	<div class="inline">
-		<hr>
+	<button class="accordion">Using ng-repeat and ng-controller</button>
+	<div ng-controller="repeatControllerCtrl" class="panel">
+		<h2>Using ng-repeat and ng-controller</h2>
+		<input type="text" ng-model="number1" ng-change="getResult()"/>
+		<input type="text" ng-model="number2" ng-change="getResult()"/>
+
+		<br/>
 		<div>
-			<h2>Using validation with AngularJS (client side off course)</h2>
+			<ul>
+				<li ng-repeat="x in theResult">{{x.display + ' = ' + x.result}}</li>
+			</ul>
+		</div>
+	</div>
 
-			<form name="myForm" ng-controller="validatorCtrl" novalidate>
+	<button class="accordion">Using filters</button>
+	<div ng-controller="filterCtrl" class="panel">
+		<h2>Using filters</h2>
+		<input type="text" ng-model="personName"/>
+		<br/>
+		<ul>
+			<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName | uppercase) + ' Age: ' + x.age}}</li>
+		</ul>
+	</div>
 
-				User: <input type="text" name="username" ng-model="username" required>
+	<button class="accordion">Using Http Get with Ajax</button>
+	<div ng-controller="httpGetAjaxCtrl" class="panel">
+		<h2>Using Http Get with Ajax</h2>
+
+		<input type="text" ng-model="personName"/>
+
+		<br/>
+		<ul>
+			<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName) + ' Age: ' + x.age}}</li>
+		</ul>
+	</div>
+
+	<button class="accordion">Using repeat in tables</button>
+	<div ng-controller="repeatInTableCtrl"  class="panel">
+		<h2>Using repeat in tables</h2>
+
+		<input type="text" ng-model="personName"/>
+
+		<br/>
+		<br/>
+
+		<table>
+			<tr>
+				<th>Position</th>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+			<tr ng-repeat="x in people | orderBy:'age' | filter:personName">
+				<td>{{$index + 1}}</td>
+				<td>{{x.personName}}</td>
+				<td>{{x.age}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<button class="accordion">Using ng-disabled</button>
+	<div class="panel">
+		<h2>Using ng-disabled</h2>
+		<button ng-disabled="chkDisabler">Testing</button>
+		<br>
+		<br>
+		<input type="checkbox" ng-model="chkDisabler">Disable</input>
+	</div>
+
+
+	<button class="accordion">Using ng-show and ng-hide</button>
+	<div ng-controller="ngShowHideCtrl" class="panel">
+		<h2>Using ng-show and ng-hide</h2>
+
+		<input type="text" ng-change="compareResult()" ng-model="n1"/>&nbsp;&nbsp;
+		<input type="text" ng-change="compareResult()" ng-model="n2"/>
+
+		<br/>
+		<p ng-hide="!isLower">n1 is lower than n2</p>
+		<p ng-show="!isHigher && !isLower">n1 is equal than n2</p>
+		<p ng-show="isHigher">n1 is greater than n2</p>
+	</div>
+
+	<button class="accordion">Using ng-click</button>
+	<div ng-controller="ngClickCtrl" class="panel">
+		<h2>Using ng-click</h2>
+
+		Type a number: <input type="text" ng-model="n1"/>
+
+		<br/>
+		<br/>
+		<button ng-click="getDouble()">Double</button>
+
+		<br/>
+		<p>{{doubleResult}}</p>
+	</div>
+
+	<button class="accordion">Using validation with AngularJS (client side off course)</button>
+	<div class="panel">
+		<h2>Using validation with AngularJS (client side off course)</h2>
+
+		<form name="myForm" ng-controller="validatorCtrl" novalidate>
+
+			User: <input type="text" name="username" ng-model="username" required>
 				<span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
 					<span ng-show="myForm.username.$error.required">The user name is required.</span>
 				</span>
-				<br/><br/>
+			<br/><br/>
 
-				Email: <input type="text" name="email" ng-model="email" required>
+			Email: <input type="text" name="email" ng-model="email" required>
 				<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
 					<span ng-show="myForm.email.$error.required">The email is required.</span>
 					<span ng-show="myForm.email.$error.email">The email is invalid.</span>
 				</span>
-				<br/><br/>
+			<br/><br/>
 
-				User: <input type="text" name="age" ng-model="age" required>
+			User: <input type="text" name="age" ng-model="age" required>
 				<span style="color:red" ng-show="myForm.age.$dirty && myForm.age.$invalid">
 					<span ng-show="myForm.age.$error.required">The age is required.</span>
 				</span><br/><br/>
-				<input type="submit" value="Save" ng-disabled="myForm.user.$dirty && myForm.user.$invalid || 
+			<input type="submit" value="Save" ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
 																myForm.email.$dirty && myForm.email.$invalid ||
 																myForm.age.$dirty && myForm.age.$invalid">
 
-				<p>Name: {{username}}</p>
-				<p>Email: {{email}}</p>
-				<p>Age: {{age}}</p>
-			</form>
-		</div>
+			<p>Name: {{username}}</p>
+			<p>Email: {{email}}</p>
+			<p>Age: {{age}}</p>
+		</form>
 	</div>
 
+	<script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].onclick = function(){
+				this.classList.toggle("active");
+				this.nextElementSibling.classList.toggle("show");
+		  }
+		}
+	</script>
 	<script src="controllers.js"></script>
 </body>
 </html>
