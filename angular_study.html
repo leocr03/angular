@@ -22,22 +22,50 @@
 			padding-right: 20px;
 		}
 
+		button.accordion {
+			background-color: #eee;
+			color: #444;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			transition: 0.4s;
+		}
+
+		button.accordion.active, button.accordion:hover {
+			background-color: #ddd;
+		}
+
+		div.panel {
+			padding: 0 18px;
+			display: none;
+			background-color: white;
+		}
+
+		div.panel.show {
+			display: block;
+		}
 	</style>
 </head>
 
 <body ng-app="pageApp">
 
+	<button class="accordion">Using ng-app, ng-model and ng-bind</button>
+	<div ng-controller="modelBindCtrl" class="panel">
+		<h2>Using ng-app, ng-model and ng-bind</h2>
+		<input type="text" ng-model="myName"/>
+		<br/>
+		<div>
+			<p ng-bind="myName"/>
+			<p style="color: blue;">{{myName | uppercase}}<p>
+		</div>
+	</div>
+
 	<div>
 		<div class="inline">
-			<div ng-controller="modelBindCtrl">
-				<h2>Using ng-app, ng-model and ng-bind</h2>
-				<input type="text" ng-model="myName"/>
-				<br/>
-				<div>
-					<p ng-bind="myName"/>
-					<p style="color: blue;">{{myName | uppercase}}<p>
-				</div>
-			</div>
 
 		 	<br/>
 
@@ -180,6 +208,17 @@
 		</div>
 	</div>
 
+	<script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].onclick = function(){
+				this.classList.toggle("active");
+				this.nextElementSibling.classList.toggle("show");
+		  }
+		}
+	</script>
 	<script src="controllers.js"></script>
 </body>
 </html>
