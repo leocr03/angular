@@ -64,37 +64,33 @@
 		</div>
 	</div>
 
-	<div>
-		<div class="inline">
+	<button class="accordion">Using ng-repeat and ng-controller</button>
 
-		 	<br/>
+	<div ng-controller="repeatControllerCtrl" class="panel">
+		<h2>Using ng-repeat and ng-controller</h2>
+		<input type="text" ng-model="number1"/>
+		<input type="text" ng-model="number2"/>
 
-			<div ng-controller="repeatControllerCtrl" >
-				<h2>Using ng-repeat and ng-controller</h2>
-				<input type="text" ng-model="number1"/>
-				<input type="text" ng-model="number2"/>
-
-				<br/>
-				<div>
-					<ul>
-						<li ng-repeat="x in getResult()">{{x.display + ' = ' + x.result}}</li>
-					</ul>
-				</div>
-			</div>
-
-		 	<br/>
-
-			<div ng-controller="filterCtrl" >
-				<h2>Using filters</h2>
-
-				<input type="text" ng-model="personName"/>
-
-				<br/>
-				<ul>
-					<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName | uppercase) + ' Age: ' + x.age}}</li>
-				</ul>
-			</div>
+		<br/>
+		<div>
+			<ul>
+				<li ng-repeat="x in getResult()">{{x.display + ' = ' + x.result}}</li>
+			</ul>
 		</div>
+	</div>
+
+	<button class="accordion">Using filters</button>
+
+	<div ng-controller="filterCtrl" class="panel">
+		<h2>Using filters</h2>
+		<input type="text" ng-model="personName"/>
+		<br/>
+		<ul>
+			<li ng-repeat="x in people | orderBy:'age' | filter:personName">Name: {{(x.personName | uppercase) + ' Age: ' + x.age}}</li>
+		</ul>
+	</div>
+
+	<div>
 
 		<div class="inline">
 			<div ng-controller="httpGetAjaxCtrl" >
