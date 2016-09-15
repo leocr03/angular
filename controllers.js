@@ -65,7 +65,7 @@ pageApp.controller('ngClickCtrl', function($scope) {
 	$scope.n1 = 0;
 	$scope.doubleResult = 0;
 
-	$scope.sumTotal = function(){
+	$scope.getDouble = function(){
 		$scope.doubleResult = $scope.n1 * 2;
 	};
 });
