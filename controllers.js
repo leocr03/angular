@@ -6,6 +6,7 @@ var pageApp = angular.module('pageApp', []).controller('modelBindCtrl', function
 pageApp.controller('repeatControllerCtrl', function($scope) {
 	$scope.number1 = 0;
 	$scope.number2 = 0;
+	$scope.theResult = [];
 
 	$scope.getResult = function() {
 		var result=[
@@ -14,7 +15,7 @@ pageApp.controller('repeatControllerCtrl', function($scope) {
 			{display:$scope.number1 + ' * ' + $scope.number2, result:$scope.number1 * $scope.number2},
 			{display:$scope.number1 + ' / ' + $scope.number2, result:$scope.number1 / $scope.number2}];
 
-		return result;
+		$scope.theResult = result;
 	}
 });
 
@@ -48,14 +49,19 @@ pageApp.controller('ngShowHideCtrl', function($scope) {
 
 	$scope.n1 = 1;
 	$scope.n2 = 1;
+	$scope.isHigher = false;
+	$scope.isLower = false;
 
 	$scope.compareResult = function(){
 		if (parseInt($scope.n1) < parseInt($scope.n2)) {
-			return -1;
+			$scope.isHigher = false;
+			$scope.isLower = true;
 		} else if (parseInt($scope.n1) === parseInt($scope.n2)) {
-			return 0;
+			$scope.isHigher = false;
+			$scope.isLower = false;
 		} else {
-			return 1;
+			$scope.isHigher = true;
+			$scope.isLower = false;
 		}
 	};
 });

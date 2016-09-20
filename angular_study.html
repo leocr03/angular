@@ -65,22 +65,20 @@
 	</div>
 
 	<button class="accordion">Using ng-repeat and ng-controller</button>
-
 	<div ng-controller="repeatControllerCtrl" class="panel">
 		<h2>Using ng-repeat and ng-controller</h2>
-		<input type="text" ng-model="number1"/>
-		<input type="text" ng-model="number2"/>
+		<input type="text" ng-model="number1" ng-change="getResult()"/>
+		<input type="text" ng-model="number2" ng-change="getResult()"/>
 
 		<br/>
 		<div>
 			<ul>
-				<li ng-repeat="x in getResult()">{{x.display + ' = ' + x.result}}</li>
+				<li ng-repeat="x in theResult">{{x.display + ' = ' + x.result}}</li>
 			</ul>
 		</div>
 	</div>
 
 	<button class="accordion">Using filters</button>
-
 	<div ng-controller="filterCtrl" class="panel">
 		<h2>Using filters</h2>
 		<input type="text" ng-model="personName"/>
@@ -139,12 +137,13 @@
 	<div ng-controller="ngShowHideCtrl" class="panel">
 		<h2>Using ng-show and ng-hide</h2>
 
-		<input type="text" ng-model="n1"/>&nbsp;&nbsp;<input type="text" ng-model="n2"/>
+		<input type="text" ng-change="compareResult()" ng-model="n1"/>&nbsp;&nbsp;
+		<input type="text" ng-change="compareResult()" ng-model="n2"/>
 
 		<br/>
-		<p ng-hide="compareResult() > -1">n1 is lower than n2</p>
-		<p ng-show="compareResult() == 0">n1 is equal than n2</p>
-		<p ng-show="compareResult() == 1">n1 is greater than n2</p>
+		<p ng-hide="!isLower">n1 is lower than n2</p>
+		<p ng-show="!isHigher && !isLower">n1 is equal than n2</p>
+		<p ng-show="isHigher">n1 is greater than n2</p>
 	</div>
 
 	<button class="accordion">Using ng-click</button>
