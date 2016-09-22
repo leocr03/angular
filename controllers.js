@@ -83,4 +83,19 @@ pageApp.controller('validatorCtrl', function($scope) {
 	$scope.age = 0;
 });
 
+pageApp.service('customSumAndDouble', function() {
+    this.sumAndDouble = function (x, y) {
+        return (parseInt(x) + parseInt(y)) * 2;
+    }
+});
+
+pageApp.controller('myOwnServiceCtrl', function($scope, customSumAndDouble) {
+   	$scope.theDouble = 0;
+   	$scope.theNumber1 = 0;
+   	$scope.theNumber2 = 0;
+
+    $scope.getSumAndDouble = function() {
+    	$scope.theDouble = customSumAndDouble.sumAndDouble($scope.theNumber1, $scope.theNumber2);
+    }
+});
 

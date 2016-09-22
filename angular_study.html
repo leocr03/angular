@@ -193,6 +193,19 @@
 		</form>
 	</div>
 
+	<button class="accordion">My own service example in AngularJS</button>
+	<div class="panel" ng-controller="myOwnServiceCtrl">
+		<h2>My own service example in AngularJS</h2>
+		<br/>
+		<input type="text" name="n1" ng-model="theNumber1" required/>&nbsp;&nbsp;
+		<input type="text" name="n1" ng-model="theNumber2" required/>
+		<br/>
+		<br/>
+		<button ng-click="getSumAndDouble()">Sum and Double</button>
+		<br/>
+		<h3>{{theDouble}}</h3>
+	</div>
+
 	<script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;
