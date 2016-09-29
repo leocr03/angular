@@ -99,3 +99,32 @@ pageApp.controller('myOwnServiceCtrl', function($scope, customSumAndDouble) {
     }
 });
 
+pageApp.controller('myTimeCtrl', function($scope, $timeout, $interval) {
+   	$scope.color1 = 'red';
+   	$scope.color2 = 'green';
+   	$scope.currentColor = $scope.color1;
+   	$scope.timeoutInSeconds = 3000;
+   	$scope.intervalInSeconds = 200;
+
+    $scope.refreshTimeoutIntervalExample = function() {
+    	var oldStyle = $scope.myStyle;
+		$scope.myStyle = {'background-color':$scope.color1};
+		var aux = {'background-color':$scope.color1};
+		var myInterval;
+
+		if(myInterval != null) {
+			$interval.cancel(myInterval);
+		}
+
+		myInterval = $interval(function() {
+			$scope.myStyle = ($scope.myStyle != aux)
+			? aux
+			: {'background-color': $scope.color2};
+		}, $scope.intervalInSeconds);
+
+		$timeout(function() {
+			$interval.cancel(myInterval);
+			$scope.myStyle = oldStyle;
+		}, $scope.timeoutInSeconds);
+    }
+});

@@ -48,6 +48,14 @@
 		div.panel.show {
 			display: block;
 		}
+
+		div.divInterval {
+			background-color: white;
+			width: 200px;
+			border: 1px;
+			padding: 10px;
+			margin: 10px;
+		}
 	</style>
 </head>
 
@@ -204,6 +212,25 @@
 		<button ng-click="getSumAndDouble()">Sum and Double</button>
 		<br/>
 		<h3>{{theDouble}}</h3>
+	</div>
+
+	<button class="accordion">Using timeout and interval</button>
+	<div class="panel" ng-controller="myTimeCtrl">
+		<h2>Using timeout and interval</h2>
+		<br/>
+		<input type="text" name="color1" ng-model="color1" required/>&nbsp;&nbsp;
+		<input type="text" name="color2" ng-model="color2" required/>
+		<input type="text" name="timeoutInSeconds" ng-model="timeoutInSeconds" required/>
+		<input type="text" name="intervalInSeconds" ng-model="intervalInSeconds" required/>
+		<br/>
+		<br/>
+		<button ng-click="refreshTimeoutIntervalExample()">Refresh</button>
+		<br/>
+		<div class="divInterval" ng-style="myStyle">
+			<p>
+				It is a div.
+			</p>
+		</div>
 	</div>
 
 	<script>
