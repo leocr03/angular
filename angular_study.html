@@ -233,6 +233,20 @@
 		</div>
 	</div>
 
+	<button class="accordion">Using a custom format</button>
+	<div class="panel" ng-controller="customFormatCtrl">
+		<h2>Using a custom format</h2>
+		<br/>
+		<label for="prefix">First Text: </label>
+		<input type="text" id= "prefix" name="prefix" ng-model="prefix" ng-change="refreshCustomFormat()" required/>&nbsp;&nbsp;
+		<label for="prefix">Last Text: </label>
+		<input type="text" id= "sufix" name="sufix" ng-model="sufix" ng-change="refreshCustomFormat()" required/>
+		<br/>
+		<div>
+			<p>{{customFormatText | myFormat}}</p>
+		</div>
+	</div>
+
 	<script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;

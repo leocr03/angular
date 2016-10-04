@@ -128,3 +128,24 @@ pageApp.controller('myTimeCtrl', function($scope, $timeout, $interval) {
 		}, $scope.timeoutInSeconds);
     }
 });
+
+pageApp.service('myFormatService', function() {
+	this.myFormatFunc = function(x) {
+		return "((" + x + "))";
+	}
+});
+
+pageApp.filter('myFormat', ['myFormatService', function(myFormatService) {
+    return function(x) {
+        return myFormatService.myFormatFunc(x);
+    };
+}]);
+
+pageApp.controller('customFormatCtrl', function($scope) {
+	$scope.prefix = "";
+	$scope.sufix = "";
+	$scope.customFormatText = "";
+	$scope.refreshCustomFormat = function() {
+		$scope.customFormatText = $scope.prefix + "|" + $scope.sufix;
+	}
+});
