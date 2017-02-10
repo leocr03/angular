@@ -1,7 +1,18 @@
-var pageApp = angular.module('pageApp', []).controller('modelBindCtrl', function($scope) {
+var pageApp = angular.module('pageApp', ["ngRoute"]).controller('modelBindCtrl', function($scope) {
 	$scope.myName = "Leo";
 });
 
+pageApp.config(["$routeProvider", function($routeProvider) {
+    $routeProvider.when("/", {
+        templateUrl : "index.html"
+    }).when("/blue", {
+        templateUrl : "pages/routing/blue.htm"
+    }).when("/green", {
+        templateUrl : "pages/routing/green.htm"
+    }).when("/red", {
+        templateUrl : "pages/routing/red.htm"
+    })
+}]);
 
 pageApp.controller('repeatControllerCtrl', function($scope) {
 	$scope.number1 = 0;
