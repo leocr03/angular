@@ -1,3 +1,5 @@
+
+
 var pageApp = angular.module('pageApp', ["ngRoute"]).controller('modelBindCtrl', function($scope) {
 	$scope.myName = "Leo";
 });
@@ -6,11 +8,11 @@ pageApp.config(["$routeProvider", function($routeProvider) {
     $routeProvider.when("/", {
         templateUrl : "index.html"
     }).when("/blue", {
-        templateUrl : "pages/routing/blue.htm"
+        templateUrl : "public/routing/blue.htm"
     }).when("/green", {
-        templateUrl : "pages/routing/green.htm"
+        templateUrl : "public/routing/green.htm"
     }).when("/red", {
-        templateUrl : "pages/routing/red.htm"
+        templateUrl : "public/routing/red.htm"
     })
 }]);
 

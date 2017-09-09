@@ -1,0 +1,22 @@
+{
+  "name": "angular-demo",
+  "version": "1.0.0",
+  "description": "angular-demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leocr03/angular-demo.git"
+  },
+  "author": "Leonardo Cristofari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leocr03/angular-demo/issues"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "homepage": "https://github.com/leocr03/angular-demo#readme"
+}
