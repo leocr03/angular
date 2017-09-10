@@ -1,10 +1,6 @@
+var app = angular.module('pageApp', ['ngRoute']);
 
-
-var pageApp = angular.module('pageApp', ["ngRoute"]).controller('modelBindCtrl', function($scope) {
-	$scope.myName = "Leo";
-});
-
-pageApp.config(["$routeProvider", function($routeProvider) {
+app.config(["$routeProvider", function($routeProvider) {
     $routeProvider.when("/", {
         templateUrl : "index.html"
     }).when("/blue", {
@@ -16,7 +12,11 @@ pageApp.config(["$routeProvider", function($routeProvider) {
     })
 }]);
 
-pageApp.controller('repeatControllerCtrl', function($scope) {
+app.controller('modelBindCtrl', function($scope) {
+	$scope.myName = "Leo";
+});
+
+app.controller('repeatControllerCtrl', function($scope) {
 	$scope.number1 = 0;
 	$scope.number2 = 0;
 	$scope.theResult = [];
@@ -32,7 +32,7 @@ pageApp.controller('repeatControllerCtrl', function($scope) {
 	}
 });
 
-pageApp.controller('filterCtrl', function($scope) {
+app.controller('filterCtrl', function($scope) {
 	$scope.personName = "";
 
 	$scope.people = [
@@ -44,21 +44,21 @@ pageApp.controller('filterCtrl', function($scope) {
 	];
 });
 
-pageApp.controller('httpGetAjaxCtrl', function($scope, $http) {
+app.controller('httpGetAjaxCtrl', function($scope, $http) {
 	$http.get("myData.json")
 		.success(function(response){
 			$scope.people = response.records;
 		});
 });
 
-pageApp.controller('repeatInTableCtrl', function($scope, $http) {
+app.controller('repeatInTableCtrl', function($scope, $http) {
 	$http.get("myData.json")
 		.success(function(response){
 			$scope.people = response.records;
 		});
 });
 
-pageApp.controller('ngShowHideCtrl', function($scope) {
+app.controller('ngShowHideCtrl', function($scope) {
 
 	$scope.n1 = 1;
 	$scope.n2 = 1;
@@ -79,7 +79,7 @@ pageApp.controller('ngShowHideCtrl', function($scope) {
 	};
 });
 
-pageApp.controller('ngClickCtrl', function($scope) {
+app.controller('ngClickCtrl', function($scope) {
 
 	$scope.n1 = 0;
 	$scope.doubleResult = 0;
@@ -89,20 +89,20 @@ pageApp.controller('ngClickCtrl', function($scope) {
 	};
 });
 
-pageApp.controller('validatorCtrl', function($scope) {
+app.controller('validatorCtrl', function($scope) {
 
 	$scope.username = 'An user';
 	$scope.email = 'email@provider.com';
 	$scope.age = 0;
 });
 
-pageApp.service('customSumAndDouble', function() {
+app.service('customSumAndDouble', function() {
     this.sumAndDouble = function (x, y) {
         return (parseInt(x) + parseInt(y)) * 2;
     }
 });
 
-pageApp.controller('myOwnServiceCtrl', function($scope, customSumAndDouble) {
+app.controller('myOwnServiceCtrl', function($scope, customSumAndDouble) {
    	$scope.theDouble = 0;
    	$scope.theNumber1 = 0;
    	$scope.theNumber2 = 0;
@@ -112,7 +112,7 @@ pageApp.controller('myOwnServiceCtrl', function($scope, customSumAndDouble) {
     }
 });
 
-pageApp.controller('myTimeCtrl', function($scope, $timeout, $interval) {
+app.controller('myTimeCtrl', function($scope, $timeout, $interval) {
    	$scope.color1 = 'red';
    	$scope.color2 = 'green';
    	$scope.currentColor = $scope.color1;
@@ -142,19 +142,19 @@ pageApp.controller('myTimeCtrl', function($scope, $timeout, $interval) {
     }
 });
 
-pageApp.service('myFormatService', function() {
+app.service('myFormatService', function() {
 	this.myFormatFunc = function(x) {
 		return "((" + x + "))";
 	}
 });
 
-pageApp.filter('myFormat', ['myFormatService', function(myFormatService) {
+app.filter('myFormat', ['myFormatService', function(myFormatService) {
     return function(x) {
         return myFormatService.myFormatFunc(x);
     };
 }]);
 
-pageApp.controller('customFormatCtrl', function($scope) {
+app.controller('customFormatCtrl', function($scope) {
 	$scope.prefix = "";
 	$scope.sufix = "";
 	$scope.customFormatText = "";
