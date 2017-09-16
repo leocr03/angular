@@ -2,10 +2,10 @@ var express = require('express');
 var path 	= require('path');
 var app     = express();
 
-app.use('/js', express.static(path.join(__dirname, 'app/public/javascripts')));
+app.use('/js', express.static(path.join(__dirname, 'public/javascripts')));
 
 app.get('*', function(req, res) {
-	return res.sendfile('app/public/index.html');
+	return res.sendfile('public/index.html');
 });
 
 app.listen(8000);
