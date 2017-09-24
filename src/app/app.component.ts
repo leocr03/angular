@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-export class Hero {
-  id: number;
-  name: string;
-}
+import { Hero } from './hero';
 
 const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
@@ -30,14 +26,7 @@ const HEROES: Hero[] = [
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
   </ul>
-  <div *ngIf="selectedHero">
-    <h2>{{selectedHero.name}} details!</h2>
-    <div><label>id: </label>{{selectedHero.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="selectedHero.name" placeholder="name">
-    </div>
-  </div>
+  <app-hero-detail [hero]="selectedHero"></app-hero-detail>
   `,
   styleUrls: ['./app.component.css'],
   styles: [`
@@ -92,10 +81,7 @@ const HEROES: Hero[] = [
 })
 export class AppComponent {
   title = 'Tour of Heroes';
-  selectedHero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+  selectedHero: Hero;
   heroes = HEROES;
 
   onSelect(hero: Hero): void {
